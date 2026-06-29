@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PulseGDPS</title>
+    <link rel="icon" href="favicon.ico">
+    <meta name="google-site-verification" content="JJqTgECFCFc8Q-9N3LtnlNaTVQT3F1UIdwmqnGejDfs" />
+    <style>
+        /* Main Styling */
+        html, body {
+            background-color: #131313;
+            color: #FFFFFF;
+            font-family: serif;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        p, strong {
+            font-size: 18px;
+            margin: 9px;
+        }
+        a {
+            color: #2bd0e6;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Download Table Styling */
+
+        table, th, td {
+            border: 2px solid #414141;
+            border-collapse: collapse;
+            text-align: left;
+            padding: 8px;
+            background-color: #070707;
+        }
+        th {
+            background-color: #000000;
+        }
+
+        /* other random stuff */
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: calc(80% - 25px);
+            background-color: #0b0b0b;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-top: 5px solid black;
+            z-index: 2;
+        }
+        .important {
+            color: #ff0000;
+        }
+        .logo {
+            box-shadow: 0 0 10px #494FB4;
+            height: 50px;
+            width: auto;
+        }
+        .videos {
+            top: 0;
+            right: 0;
+            width: 20%;
+            background-color: #0b0b0b;
+            position: absolute;
+            padding: 10px;
+            z-index: 3;
+            height: 1191px;
+            border-left: 5px solid black;
+        }
+        .vtitle {
+            display: block;
+            text-align: center;
+            margin: 5px;
+        }
+        .thingy {
+            display: block;
+            margin-bottom: 10px;
+        }
+        .videos::-webkit-scrollbar {
+            display: none;
+        }
+        body::-webkit-scrollbar {
+            display: none;
+        }
+        .title {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            top: 0;
+            left: 0;
+        }
+        .header {
+            color: transparent;
+            vertical-align: middle;
+            font-size: 50px;
+            margin-left: 10px;
+            background: linear-gradient(
+                45deg,
+                #494FB4,
+                #8f97ff,
+                #494FB4
+            );
+            background-clip: text;
+            -webkit-background-clip: text;
+            animation: shine 10s linear infinite;
+            background-size: 200%;
+        }
+        @keyframes shine {
+            from {
+                background-position: 200%;
+            }
+            to {
+                background-position: -200%;
+            }
+        }
+        .extra {
+            top:0;
+            right: 409px;
+            position: absolute;
+            text-align: right;
+        }
+        .copy {
+            transition: 0.1s;
+            position: fixed;
+            display: inline-block;
+            background-color: #000000;
+            padding: 0px 5px 4px 5px;
+            height: auto;
+            font-size: 30px;
+            cursor: pointer;
+            user-select: none;
+            border-radius: 4px;
+            bottom: 69px;
+            right: 414px;
+            box-shadow: 0 4px 0 #FFFFFF;
+            z-index: 10;
+        }
+        .copy:active {
+            box-shadow: none;
+            transform: translatey(4px)
+        }
+        .crop {
+            position: fixed;
+            font-size: 30px;
+            bottom: 60px;
+            right: 510px;
+            opacity: 0;
+            z-index: 10;
+            color: #11c019;
+            font-weight: bold;
+        }
+        .vid {
+            position: absolute;
+            top: calc(100vh);
+            width: calc(80% - 20px);
+            left: 0;
+            z-index: 0;
+        }
+        .addspace {
+            height: 363px;
+        }
+        .feet {
+            z-index: 0;
+        }
+        .info {
+            position: absolute;
+            text-align: right;
+            top: 50px;
+            right: 409px;
+            background-color: #0b0b0b;
+            font-size: 18px;
+            margin: 9px;
+            padding: 5px 15px 8px 15px;
+            border: 3px solid black;
+        }
+        .customstrong {
+            font-weight: bold;
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+    <!-- YouTube Videos -->
+    <div class="videos">
+        <h2 class="vtitle">Installer Tutorial<br>(modded or vanilla)</h2>
+        <iframe class="thingy" width="384" height="216" src="https://www.youtube.com/embed/K5hLjPGGv68?si=nNAkLVn_Q-kN6bzc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <h2 class="vtitle">Zip Tutorial (vanilla)</h2>
+        <iframe class="thingy" width="384" height="216" src="https://www.youtube.com/embed/X3Xb_NrFZI0?si=1dcqaylOcYmmEK-i" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <h2 class="vtitle">Geode Tutorial (modded)</h2>
+        <iframe class="thingy" width="384" height="216" src="https://www.youtube.com/embed/HcZZQkEI1dI?si=OUisihrRpYhIZ3Eh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <h2 class="vtitle">Android Tutorial (vanilla)</h2>
+        <iframe class="thingy" width="384" height="216" src="https://www.youtube.com/embed/cktUb5l6gfc?si=Y5r31ELmHkRkPcRw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+
+    <h1 class="title">
+        <img class="logo" src="pulse.png" alt="PulseGDPS Logo">
+        <span class="header shine">PulseGDPS</span>
+    </h1>
+
+    <p>
+        Please make sure you have joined the <a href="https://discord.gg/ut9QxxGXF3" target="_blank">discord server</a>.<br>
+        This will hopefully give you the best experience.<br>
+        There is also a useful <a href="https://puls.ps.fhgdps.com/dashboard/">dashboard</a> that you should check out.<br>
+    </p>
+
+    <!-- Downloads table -->
+
+    <strong>It is recommended to use the installers rather than the zip.</strong><br>
+    <strong><em class="important">MAKE SURE YOU HAVE GEOMETRY DASH AND GEODE</em></strong><br>
+    <strong><em class="important">INSTALLED BEFORE INSTALLING THE MODDED VERSIONS!</em></strong>
+    <br><br>
+    <table>
+        <tr>
+            <th>Download</th>
+            <th>OS</th>
+            <th>Modded</th>
+            <th>Type</th>
+        </tr>
+
+        <tr>
+            <td><a href="https://github.com/pulsegdps/PulseGDPS/releases/download/poopy/PulseGDPS-windows-setup.exe">PulseGDPS-windows-setup.exe</a></td>
+            <td>Windows</td>
+            <td>No</td>
+            <td>Installer (exe)</td>
+        </tr>
+
+        <tr>
+            <td><a href="https://github.com/pulsegdps/PulseGDPS/releases/download/poopy/PulseGDPS-modded-windows-setup.exe">PulseGDPS-modded-windows-setup.exe</a></td>
+            <td>Windows</td>
+            <td>Yes</td>
+            <td>Installer (exe)</td>
+        </tr>
+
+        <tr>
+            <td><a href="https://github.com/pulsegdps/PulseGDPS/releases/download/poopy/PulseGDPS-windows.zip">PulseGDPS-windows.zip</a></td>
+            <td>Windows</td>
+            <td>No</td>
+            <td>Zip (exe inside)</td>
+        </tr>
+
+        <tr>
+            <td><a href="https://github.com/pulsegdps/PulseGDPS/releases/download/poopy/PulseGDPS-android-setup.apk">PulseGDPS-android-setup.apk</a></td>
+            <td>Android</td>
+            <td>No</td>
+            <td>Installer (APK)</td>
+        </tr>
+    </table>
+    <br>
+
+    <!-- Main Section -->
+
+    <div class="copy">copy ip</div>
+    <p class="crop"></p>
+
+    <h2>How to join PulseGDPS</h2>
+
+    <p>
+        To join, first make sure you have a copy of Geometry Dash. Once you do that, there are 5 ways of joining PulseGDPS, and<br>
+        the recommended ways are with the installers, but those do not have a written tutorial, but there is a video tutorial on the right.<br>
+        There is also an android download but I don't use android so I wouldn't know how to install an APK file.<br>
+        <br>
+        <strong>Method 1</strong><strong><em>Windows only</em></strong><br>
+        Download the <a href="https://github.com/pulsegdps/PulseGDPS/releases/download/poopy/PulseGDPS-windows.zip">zip file</a> (also linked above), then extract the contents into any folder.<br>
+        Then you may open the folder you extracted the contents into and run "pulse.exe".<br>
+        <br>
+        <strong>Method 2</strong><strong><em>using mods, any platform</em></strong><br>
+        Make sure Geometry Dash is installed on your computer, then download and install Geode from: <a href="https://geode-sdk.org/" target="_blank">https://geode-sdk.org/</a>.<br>
+        Then open Geometry Dash and click the pentagon at the bottom right-ish. Then click "Download" at the top,<br>
+        and search for the "GDPS Switcher" mod and press "Get", then click "Install" at the bottom left and wait for it to do its thing,<br>
+        then click "Restart Now". Once you did all of that, you can click the servers icon at the bottom right-ish.<br>
+        Then click "New" on the bottom right. Choose a server name, then in the "Server URL" box, type https://puls.ps.fhgdps.com.<br>
+        You may then click "Use", then the back arrow on the top left, and finally press "Restart now".<br>
+        <br>
+    </p>
+    <p class="extra">
+        <strong class="important">IMPORTANT</strong>
+        If you would like to be able to join the voice channels<br>
+        and send pictures in the discord server, click <a href="media-join/">here</a><br>
+    </p>
+    <div class="info">
+        <stun class="customstrong">Server Stats</stun><br>
+        Total Accounts: <a id="accountCount" href="https://puls.ps.fhgdps.com/dashboard/stats/accountsList.php" target="_blank">Loading...</a><br>
+        Newest Account: <a id="accountNewest" target="_blank">Loading...</a><br>
+        Top Player: <a id="topAccount" target="_blank">Loading...</a><br>
+        Total Levels: <a id="levels" href="https://puls.ps.fhgdps.com/dashboard/stats/levelsList.php" target="_blank">Loading...</a><br>
+        Newest Level: <a id="newestLevel" href="https://puls.ps.fhgdps.com/dashboard/stats/levelsList.php" target="blank_">Loading...</a><br>
+        Newest Level ID: <span id="newestLevelID">Loading...</span><br>
+        Newest Level Author: <a id="newestLevelAuthor" target="blank_">Loading...</a>
+    </div>
+
+    <!-- footer -->
+
+    <video class="vid" autoplay muted loop playsinline>
+        <source src="https://github.com/pulsegdps/PulseGDPS/releases/download/what-is-a-release-tag-for/gameplay1.webm" type="video/mp4">
+    </video>
+
+    <div class="addspace"></div>
+
+    <footer class="feet">
+        <br><br><br>
+        <p>
+            <a href="https://puls.ps.fhgdps.com/dashboard/" target="_blank">Dashboard</a> • 
+            <a href="https://pulsegdps.github.io/PulseGDPS/" target="_blank">Download</a> • 
+            <a href="https://discord.gg/ut9QxxGXF3" target="_blank">Discord Server</a> • 
+            <a href="https://github.com/pulsegdps/PulseGDPS" target="_blank">Github</a>
+        </p>
+    </footer>
+
+    <!-- JavaScript -->
+
+    <script>
+        // count the accounts
+        fetch("https://puls.ps.fhgdps.com/")
+        .then(res => res.json())
+        .then(data => {
+            document.querySelector("#accountCount").textContent = data.accounts;
+        })
+        .catch(err => {
+            console.error(err);
+            document.querySelector("#accountCount").textContent = "Failed";
+        });
+
+        // find newest account
+        fetch("https://puls.ps.fhgdps.com/")
+        .then(res => res.json())
+        .then(data => {
+            document.querySelector("#accountNewest").textContent = data.newestAccount;
+
+            const link = document.querySelector("#accountNewest");
+            link.href = "https://puls.ps.fhgdps.com/dashboard/profile/" + data.newestAccount;
+        })
+        .catch(err => {
+            console.error(err);
+            document.querySelector("#accountNewest").textContent = "Failed";
+        });
+
+        // find top account info
+        fetch("https://puls.ps.fhgdps.com/")
+        .then(res => res.json())
+        .then(data => {
+            document.querySelector("#topAccount").textContent = data.topAccount + " *" + data.topAccountStars + " stars*";
+
+            const link = document.querySelector("#topAccount");
+            link.href = "https://puls.ps.fhgdps.com/dashboard/profile/" + data.topAccount;
+        })
+        .catch(err => {
+            console.error(err);
+            document.querySelector("#topAccount").textContent = "Failed";
+        });
+
+        // count the levels
+        fetch("https://puls.ps.fhgdps.com/")
+        .then(res => res.json())
+        .then(data => {
+            document.querySelector("#levels").textContent = data.levels
+        })
+        .catch(err => {
+            console.error(err);
+            document.querySelector("#topAccount").textContent = "Failed";
+        });
+
+        // find newest level
+        fetch("https://puls.ps.fhgdps.com/")
+        .then(res => res.json())
+        .then(data => {
+            document.querySelector("#newestLevel").textContent = data.newestLevel
+        })
+        .catch(err => {
+            console.error(err);
+            document.querySelector("#newestLevel").textContent = "Failed";
+        });
+
+        // find newest level id
+        fetch("https://puls.ps.fhgdps.com/")
+        .then(res => res.json())
+        .then(data => {
+            document.querySelector("#newestLevelID").textContent = data.newestLevelID
+        })
+        .catch(err => {
+            console.error(err);
+            document.querySelector("#newestLevelID").textContent = "Failed";
+        });
+
+        // find newest level author
+        fetch("https://puls.ps.fhgdps.com/")
+        .then(res => res.json())
+        .then(data => {
+            document.querySelector("#newestLevelAuthor").textContent = data.newestLevelAuthor
+
+            const link = document.querySelector("#newestLevelAuthor");
+            link.href = "https://puls.ps.fhgdps.com/dashboard/profile/" + data.newestLevelAuthor;
+        })
+        .catch(err => {
+            console.error(err);
+            document.querySelector("#newestLevelAuthor").textContent = "Failed";
+        });
+        
+
+        // i forgot what ts does ngl
+
+        document.querySelector(".copy").addEventListener("click", async function() {
+            document.querySelector(".crop").style.transition = "none"
+            try {
+                await navigator.clipboard.writeText("https://puls.ps.fhgdps.com");
+                console.log('Text successfully copied to clipboard');
+                document.querySelector(".crop").textContent = "Copied!";
+                document.querySelector(".crop").style.opacity = "100%";
+            } catch (err) {
+                console.error('Failed to copy text: ', err);
+                document.querySelector(".crop").textContent = "Copy Failed: " + err.message;
+                document.querySelector(".crop").style.opacity = "100%";
+            }
+            setTimeout(function() {
+                document.querySelector(".crop").style.transition = "1s";
+                document.querySelector(".crop").style.opacity = "0";
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
